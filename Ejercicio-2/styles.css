@@ -1,0 +1,76 @@
+* {
+    /* el asterisco es el selector universal */
+    /* elimino margenes */
+    margin: 0;
+    /* elimino relleno */
+    padding: 0;
+    /* evito que el ancho se sume al relleno */
+    box-sizing: border-box;
+}
+
+/* estilos generales */
+/* selector a partir del nombre */
+
+body {
+    /* fondo */
+    background:url(Assets/imagen-back.jpg) center 0 no-repeat;
+    background-size: cover;
+}
+
+main{
+     /* configuro el ancho */
+     width: 100%;
+     max-width: 700px;
+     /* centro el contenedor */
+     /* margin top right bottom left */
+    margin: 0 auto 0 auto;
+    background-color: rgba(100, 98, 98, 0.656);
+    padding: 10px;
+}
+
+
+img{
+
+    /* configurar ancgho 100% */
+    width: 100%;
+    }
+
+h1{
+    /* familia tipográfica */
+
+  font-family: "Germania One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+   /* color de fuente */
+   color: rgb(255, 200, 248); 
+   /* Alinear texto */
+  text-align: center;
+}
+
+p{
+  font-family: "Didact Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(166, 98, 140);
+  text-align: justify;
+  margin: 20px 0 20px 0; 
+}
+
+
+/* seleccion etiqueta por clase */
+
+.subtitulo-pf{
+
+ font-family: "Germania One", system-ui;
+font-weight: 400;
+font-style: normal;
+font-size: 60px;
+   /* color de fuente */
+ color: rgb(188, 78, 181); 
+}
+
+/* seleccion Por ID */
+#parrafo-destacado{
+   color: rgb(237, 217, 235);  
+}
