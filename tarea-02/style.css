@@ -1,0 +1,319 @@
+/* 1. selectores generales */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 2. colores */
+
+:root {
+    --color-principal: #00843d;
+    --color-acento1: #e63946;
+    --color-acento2: #f4a261;
+    --color-texto: #1b2d52;
+}
+/* 3. estructura general */
+
+main {
+    padding: 20px;
+    margin-top: 90px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+article p {
+    margin-bottom: 10px;
+}
+
+body{
+    background-image: 
+        linear-gradient(rgba(244, 244, 244, 0.9), rgba(244, 244, 244, 0.5)), 
+        url("assets/gato.png");
+    background-repeat: repeat;
+    background-color: #ffffff;
+    background-size: 150px;
+}
+
+
+/* 4. elementos generales */
+
+.flex-elements {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.flex-elements article {
+    flex: 1; 
+    background-color: #fdfaf6; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    text-align: center; 
+    border: 1px solid #f2ece6; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+/* Animacion tarjetas al pasar el mouse por encima */
+
+.flex-elements article:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1); /* Dibuja una sombra suave y difuminada debajo */
+}
+
+.flex-elements article img {
+    width: 90%;
+    height: auto;
+    margin: 20px auto; /* Espacio arriba, abajo y a ambos lados*/
+    display: block;
+    flex: 1; 
+    background-color: #fdfaf6; /* Un beige muy clarito como en tu ejemplo */
+    border-radius: 15px; /* Bordes bien curvos y modernos */
+    overflow: hidden; /* Las tijeras mágicas para redondear la foto */
+    text-align: center; /* Centra el título, el párrafo y el botón */
+    border: 1px solid #f2ece6; /* Una línea súper sutil */
+}
+
+.flex-elements article h3 {
+    margin-top: 20px;
+    padding: 0 20px; 
+    color: var(--color-acento1);
+}
+
+.flex-elements article p {
+    padding: 0 20px; 
+    margin-bottom: 20px;
+}
+
+/* boton de ver más */
+
+.flex-elements article a {
+    display: inline-block; 
+    background-color: var(--color-principal); 
+    color: #ffffff; 
+    padding: 10px 20px; 
+    margin: 0 20px 25px 20px; 
+    text-decoration: none; 
+    font-weight: bold;
+    border-radius: 5px; 
+}
+
+/* Efecto al pasar el mouse por el botón */
+
+.flex-elements article a:hover {
+    background-color: var(--color-acento1); /* Cambia al rojo */
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+}
+
+#seccion-mapa {
+    background-color: #ffffff; 
+    padding: 10px; 
+    border-radius: 20px; 
+    max-width: 900px; 
+    margin: 0 auto 50px auto; 
+    
+    text-align: center; /* Centra el título */
+}
+
+#seccion-video {
+    background-color: rgb(254, 251, 251); 
+    padding: 60px 10px; 
+    border-radius: 25px;
+    margin-bottom: 10px; 
+    max-width: 900px; /* Evita que la caja crezca hasta los extremos de la pantalla */
+    margin: 10px auto 50px auto;
+}
+
+
+/* 5. tipografías */
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--color-principal);
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+
+h2 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    color: var(--color-acento2);
+    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+
+h3 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    color: var(--color-acento1);
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+
+p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: var(--color-texto);
+    text-align: justify;
+}
+
+
+/* 6. cabecera web */
+
+#cabecera-web {
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--color-acento1);
+    
+    /* figar cabecera al hacer scroll */
+    position: fixed; 
+    top: 0;        
+    left: 0;         
+    width: 100%;     
+    z-index: 1000;
+}
+
+#cabecera-web img {
+    width: 120px; 
+    height: auto;
+}
+
+
+/* 7. botones menú */
+
+.bt-principal {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    text-decoration: none;
+
+    background: var(--color-acento1);
+
+    padding: 8px 15px;
+
+    border-radius: 3px;
+
+    transition: all 0.3s linear;
+
+    color: white;
+}
+
+
+.bt-principal:hover {
+
+    background: var(--color-principal);
+
+    padding: 8px 20px;
+}
+
+/* 8. Footer general */
+
+footer {
+    background-color: white;
+    padding: 20px 40px;
+    display: flex;
+    border-top: 3px solid var(--color-acento1); 
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; 
+    gap: 40px;
+}
+
+.footer-brand img {
+    width: 300px;
+    height: auto;
+}
+
+footer a {
+    color:  #f4a261;
+    text-decoration: none; 
+    }
+
+.footer-enlaces {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap; 
+    gap: 10px;
+    flex: 1;
+    margin-top: 20px;
+}
+
+.footer-enlaces ul {
+   list-style: none;
+   margin-top: 10px;
+}
+
+.footer-enlaces a {
+    color: rgb(195, 168, 168);
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1.8;
+}
+    .footer-enlaces h3 {
+    font-size: 20px;
+    color: var(--color-acento1); 
+    margin-bottom: 5px;
+}
+
+.footer-enlaces a:hover {
+    color: rgb(16, 92, 29); 
+    }
+/* 9. responsive */
+
+@media (max-width: 600px) {
+
+    #cabecera-web {
+        flex-direction: column;
+    }
+
+
+    #cabecera-web nav {
+        width: 100%;
+    }
+
+
+    .bt-principal {
+
+        display: block;
+
+        text-align: center;
+
+        border-radius: 0;
+
+        border-bottom: 1px solid var(--color-acento1);
+    }
+
+
+    .flex-elements {
+        flex-direction: column;
+    }
