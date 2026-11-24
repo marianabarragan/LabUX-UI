@@ -1,0 +1,607 @@
+/* =========================================================
+   Dulce Suspiro · Landing page
+   Traducción a código del diseño en Figma "página postres".
+   Escritorio: lienzo de 1920 px · Móvil: lienzo de 430 px (iPhone 16 Plus).
+   script.js escala cada lienzo al ancho de la ventana con "zoom",
+   así las medidas son exactamente las del diseño.
+   ========================================================= */
+
+:root {
+  /* Rojo */
+  --rojo-200: #FFF3F4;
+  --rojo-300: #FEEAEB;
+  --rojo-400: #FEC1C5;
+  --rojo-500: #F999AC;
+  --rojo-700: #AB4F5F;
+  --rojo-900: #880101;
+  /* Verde */
+  --verde-500: #F0FFCA;
+  --verde-600: #D5E8A1;
+  --verde-800: #849A77;
+  --verde-900: #505F4F;
+  --verde-texto: #668005;
+  --esmeralda-600: #B3DC47;
+
+  --fuente: 'Nunito', sans-serif;
+  --fuente-titulo: 'MonteCarlo', cursive;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fuente);
+  color: var(--rojo-900);
+  background: #FFFFFF;
+  line-height: 1.364;
+  overflow-x: hidden;
+}
+
+img { display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input { font: inherit; }
+
+/* Las imágenes nunca se deforman: siempre conservan su proporción */
+img { object-fit: contain; }
+
+/* Recorte (modo CROP de Figma): el marco recorta y la imagen conserva su proporción */
+.recorte { overflow: hidden; }
+.recorte img { position: absolute; max-width: none; object-fit: fill; }
+
+/* Mostrar un lienzo u otro según el ancho */
+.movil { display: none; }
+@media (max-width: 767px) {
+  .escritorio { display: none; }
+  .movil { display: block; }
+}
+
+/* =========================================================
+   ESCRITORIO
+   ========================================================= */
+.escritorio { width: 1920px; position: relative; overflow: hidden; }
+.escritorio .lienzo { position: relative; width: 1920px; height: 9805px; display: block; }
+.escritorio .lienzo > * { position: absolute; }
+.ancla { position: absolute; left: 0; width: 10px; height: 10px; }
+
+/* ---------- Header fijo ---------- */
+.header-escritorio {
+  position: fixed; top: 0; left: 0;
+  width: 1920px; height: 0;
+  z-index: 50;
+}
+.header-escritorio > * { position: absolute; }
+.header-escritorio .onda { left: -126px; top: -104px; width: 2071px; height: 246px; pointer-events: none; }
+.header-escritorio .circulo-logo {
+  left: 735px; top: -190px; width: 422px; height: 402px;
+  border-radius: 50%; background: var(--rojo-300);
+}
+.header-escritorio nav { position: static; }
+.header-escritorio .pestana {
+  position: absolute; top: 31px; height: 45px; width: 200px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rojo-300);
+  border-radius: 0 0 16.7px 16.7px;
+  font-weight: 600; font-size: 26.67px; color: var(--rojo-900);
+  transition: color .2s ease;
+}
+.header-escritorio .pestana:hover { color: var(--rojo-500); }
+.header-escritorio .p-inicio { left: 34px; }
+.header-escritorio .p-pasteles { left: 427px; }
+.header-escritorio .p-pedido { left: 1318px; }
+.header-escritorio .p-ocasion { left: 1641px; width: 244px; }
+.header-escritorio .logo { left: 891px; top: 23px; width: 131px; height: 138px; }
+.header-escritorio .logo img { width: 100%; height: 100%; }
+
+/* ---------- Inicio ---------- */
+.fondo-inicio { left: 0; top: 5px; width: 1920px; height: 1277px; background: var(--rojo-400); }
+.trazo-inicio { left: 0; top: 323px; width: 1920px; height: 824px; overflow: visible; }
+.pastel-inicio { left: 128px; top: 343px; width: 700px; height: 757px; }
+.titulo-inicio {
+  left: 881px; top: 549px; width: 794px; height: 157px;
+  font-family: var(--fuente-titulo); font-weight: 400;
+  font-size: 166.67px; line-height: 157px; color: var(--rojo-900);
+  white-space: nowrap;
+}
+.bajada-inicio {
+  left: 937px; top: 728px; width: 684px; height: 40px;
+  font-weight: 600; font-size: 31.11px; line-height: 40px; color: var(--rojo-900);
+  white-space: nowrap;
+}
+.escritorio .boton-principal {
+  left: 1027px; top: 808px; width: 504px; height: 87px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rojo-300); border-radius: 16.7px;
+  font-weight: 600; font-size: 22.22px; line-height: 23.3px; color: var(--rojo-900);
+}
+
+/* ---------- Pasteles de temporada (carrusel) ---------- */
+.escritorio .carrusel { left: 0; top: 1252px; width: 1920px; height: 1198px; overflow: hidden; }
+.escritorio .carrusel > * { position: absolute; }
+.escritorio .carrusel .fondo { left: -10px; top: 0; width: 1930px; height: 1198px; background: var(--verde-600); }
+.escritorio .carrusel .onda-superior { left: 0; top: 0; width: 1925px; height: 253px; }
+.carrusel .limones {
+  left: 0; top: 0; width: 5012px; height: 1198px;
+  transform: translateX(-1503px);
+  transition: transform .6s ease-in-out;
+  pointer-events: none;
+}
+.limones-arte { position: relative; width: 5012px; height: 1198px; }
+.limon { position: absolute; max-width: none; }
+.limon-a { width: 329px; height: 331px; }
+.limon-a-peq { width: 221.7px; height: 223px; }
+.limon-b, .limon-b-girado { width: 308px; height: 301px; }
+.limon-b-girado { transform-origin: 0 0; transform: rotate(-77.47deg); }
+.escritorio .titulo-carrusel {
+  left: 627px; top: 303px; width: 761px; height: 54px;
+  font-weight: 700; font-size: 71.28px; line-height: 54px; color: var(--verde-900);
+  white-space: nowrap;
+}
+.escritorio .carrusel .ventana { left: 219px; top: 481px; width: 1490px; height: 457px; overflow: hidden; }
+.escritorio .carrusel .pista {
+  position: absolute; left: 0; top: 0; height: 444px;
+  display: flex; gap: 15.4px;
+  transform: translateX(-1505.67px);
+  transition: transform .6s ease-in-out;
+}
+.tarjeta-temporada { flex: none; display: flex; flex-direction: column; }
+.escritorio .tarjeta-temporada { width: 361px; gap: 13.36px; }
+.imagen-tarjeta {
+  position: relative; width: 361px; height: 343px; flex: none;
+  background: var(--verde-500); border-radius: 16.7px;
+}
+.imagen-tarjeta .fondo-onda { position: absolute; inset: 0; overflow: hidden; border-radius: 16.7px; opacity: .96; }
+.imagen-tarjeta .fondo-onda img { position: absolute; width: 1641px; height: 191px; max-width: none; }
+.imagen-tarjeta .foto { position: absolute; max-width: none; }
+.tarjeta-temporada .contenedor { background: var(--verde-500); color: var(--verde-texto); }
+.escritorio .tarjeta-temporada .contenedor {
+  height: 86px; padding: 13.36px; border-radius: 16.7px;
+}
+.escritorio .tarjeta-temporada strong { font-weight: 600; font-size: 24.5px; line-height: 32.3px; }
+.escritorio .tarjeta-temporada span { font-weight: 400; font-size: 17.8px; line-height: 26.7px; }
+.escritorio .tarjeta-temporada p { line-height: 26.7px; }
+
+.escritorio .carrusel .flecha { width: 127px; height: 111px; }
+.escritorio .carrusel .flecha img { width: 127px; height: 111px; }
+.escritorio .carrusel .flecha-derecha { left: 1745px; top: 601px; }
+.escritorio .carrusel .flecha-izquierda { left: 67px; top: 602px; }
+.carrusel .flecha-izquierda img { transform: scaleX(-1); } /* espejo, sin deformar */
+
+/* ---------- Ocasión especial ---------- */
+.ocasion-especial {
+  left: -9px; top: 2428px; width: 1937px; height: 4210px;
+  overflow: hidden; background: #FFFFFF;
+}
+.ocasion-especial > * { position: absolute; }
+.ocasion-especial .fondo-rosa { left: 0; top: 122px; width: 1937px; height: 4308px; background: var(--rojo-300); }
+.ocasion-especial .patron { left: 9px; top: 166px; width: 1901px; height: 4264px; opacity: .3; }
+.ocasion-especial .chorreado { left: -69px; top: -59px; width: 2038px; height: 562px; }
+.titulo-ocasion {
+  left: 686px; top: 476px; width: 607px; height: 54px;
+  font-weight: 700; font-size: 71.1px; line-height: 54px; color: var(--rojo-900);
+  white-space: pre;
+}
+.fila-ocasion { left: 0; width: 1920px; height: 684px; }
+.fila-granada  { top: 620px; }
+.fila-destello { top: 1524px; }
+.fila-amor     { top: 2428px; }
+.fila-flores   { top: 3332px; }
+
+.tarjeta-ocasion {
+  position: absolute; top: 0; width: 1800px; height: 684px;
+  background: rgba(255, 249, 249, .82);
+  border: 3px solid rgba(255, 255, 255, .9);
+  border-radius: 48px;
+  box-shadow: 0 18px 48px rgba(136, 1, 1, .1);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: left .8s ease-out;
+}
+.tarjeta-ocasion > * { position: absolute; }
+/* posiciones "cerrada" y "abierta" tomadas de las variantes de Figma */
+.fila-granada  .tarjeta-ocasion.cerrada { left: -1593px; }
+.fila-amor     .tarjeta-ocasion.cerrada { left: -1561px; }
+.fila-destello .tarjeta-ocasion.cerrada { left: 1675px; }
+.fila-flores   .tarjeta-ocasion.cerrada { left: 1695px; }
+.tarjeta-ocasion.abierta { left: 60px; }
+
+/* el borde de 3px desplaza el contenido: se compensa */
+.tarjeta-ocasion .texto { width: 731px; height: 224px; top: 227px; }
+.tarjeta-ocasion h3 {
+  font-family: var(--fuente-titulo); font-weight: 400;
+  font-size: 68.75px; line-height: 82px; height: 83px; white-space: nowrap;
+}
+.tarjeta-ocasion .texto p {
+  position: absolute; top: 120px; width: 731px;
+  font-weight: 600; font-size: 26.74px; line-height: 34.4px;
+}
+.fila-granada  .texto { left: 55px; }
+.fila-granada  .imagen-pastel { left: 834px; top: -3px; width: 748px; height: 683px; }
+.fila-granada  .flecha-ocasion { left: 1630px; }
+.fila-amor     .texto { left: 87px; }
+.fila-amor     .imagen-pastel { left: 866px; top: -3px; width: 684px; height: 684px; }
+.fila-amor     .flecha-ocasion { left: 1598px; }
+.fila-destello .flecha-ocasion { left: 93px; }
+.fila-destello .imagen-pastel { left: 251px; top: -17px; width: 671px; height: 711px; }
+.fila-destello .texto { left: 971px; }
+.fila-flores   .flecha-ocasion { left: 75px; }
+.fila-flores   .imagen-pastel { left: 233px; top: -4px; width: 750px; height: 685px; }
+.fila-flores   .texto { left: 1031px; }
+.tarjeta-ocasion img.imagen-pastel { object-fit: cover; }
+.flecha-ocasion { top: 291px; width: 109px; height: 96px; transition: transform .3s ease-in; }
+.flecha-ocasion img { width: 109px; height: 96px; }
+.flecha-ocasion:hover { transform: scale(1.05); }
+.tarjeta-ocasion.abierta .flecha-ocasion { cursor: default; }
+.tarjeta-ocasion.abierta .flecha-ocasion:hover { transform: none; }
+
+/* ---------- Pide tu pastel ---------- */
+.fondo-verde-pedido { left: -29px; top: 6728px; width: 1960px; height: 2443px; background: var(--verde-500); }
+.trazo-pedido { left: 0; top: 6887px; width: 1885px; height: 2622px; overflow: visible; }
+.banda { left: -9px; top: 6557px; width: 1957px; height: 299px; }
+.velo-banda { left: -9px; top: 6560px; width: 1929px; height: 299px; background: rgba(255, 243, 244, .6); }
+.caja { left: -131px; top: 7070px; width: 1108px; height: 518px; }
+.titulo-pide {
+  left: 694px; top: 6932px; width: 791px; height: 62px;
+  font-weight: 700; font-size: 96px; line-height: 62px; color: var(--rojo-900);
+  white-space: nowrap;
+}
+.contenedor-formulario { left: 155px; top: 7656px; width: 1582px; height: 930px; }
+.mujer { left: 1232px; top: 8614px; width: 743px; height: 557px; object-fit: cover; }
+
+/* =========================================================
+   FORMULARIO (común) — estados de los componentes
+   ========================================================= */
+.formulario { position: relative; background: var(--rojo-200); border-radius: 25px; }
+.formulario .paso { display: none; }
+.formulario[data-paso="1"] .paso-1,
+.formulario[data-paso="2"] .paso-2,
+.formulario[data-paso="3"] .paso-3,
+.formulario[data-paso="enviado"] .paso-enviado { display: block; }
+
+.formulario .titulo { font-weight: 400; color: var(--rojo-900); text-align: center; }
+.etiqueta-grupo { font-weight: 400; color: var(--rojo-900); white-space: nowrap; }
+
+/* barra de progreso */
+.barra-progreso { position: relative; }
+.barra-progreso > span { position: absolute; display: block; }
+.barra-progreso .riel { background: var(--rojo-300); border: 2px solid var(--rojo-500); }
+.barra-progreso .avance { background: var(--rojo-400); transition: width .4s ease; }
+.barra-progreso .indicador { background: var(--rojo-400); border-radius: 50%; transition: left .4s ease; }
+
+/* chip de opción */
+.chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--rojo-300); border: 2px solid var(--rojo-900);
+  color: var(--rojo-700); font-weight: 600; white-space: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.chip:hover, .chip.seleccionado { background: var(--verde-500); border-color: var(--verde-800); }
+
+/* tarjeta de tamaño */
+.tarjeta-tamano {
+  background: var(--rojo-300); border-style: solid; border-color: var(--rojo-700);
+  color: var(--rojo-700);
+  transition: background .2s, box-shadow .2s, color .2s;
+}
+.tarjeta-tamano .icono { fill: var(--rojo-500); flex: none; transition: fill .2s; }
+.tarjeta-tamano .nombre { font-weight: 400; }
+.tarjeta-tamano .porciones { font-weight: 600; }
+.tarjeta-tamano .etiqueta-elegido {
+  display: none; align-items: center; justify-content: center;
+  background: var(--verde-500); border: 1px solid var(--verde-900);
+  border-radius: 25px; color: var(--rojo-700); font-weight: 600;
+}
+.tarjeta-tamano:hover { background: var(--rojo-700); color: var(--rojo-200); box-shadow: 0 10px 24px rgba(171, 79, 95, .35); }
+.tarjeta-tamano.seleccionado { background: var(--rojo-700); color: var(--rojo-200); box-shadow: 0 8px 28px rgba(132, 154, 119, .6); }
+.tarjeta-tamano:hover .icono, .tarjeta-tamano.seleccionado .icono { fill: var(--rojo-300); }
+.tarjeta-tamano.seleccionado .etiqueta-elegido { display: flex; }
+
+/* botón de paso */
+.boton-paso {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rojo-300); border: 2px solid var(--rojo-700); border-radius: 25px;
+  color: var(--rojo-700); font-weight: 400;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.boton-paso:hover { background: var(--rojo-700); border-color: var(--rojo-700); color: var(--rojo-200); box-shadow: 0 8px 20px rgba(171, 79, 95, .35); }
+
+/* campo de texto */
+.campo { display: flex; flex-direction: column; }
+.campo .etiqueta { font-weight: 600; color: var(--rojo-900); white-space: nowrap; }
+.campo input {
+  width: 100%; background: var(--rojo-200);
+  border: 2px solid var(--rojo-500); outline: none;
+  color: var(--rojo-700); font-weight: 600;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.campo input::placeholder { color: var(--rojo-500); opacity: 1; }
+.campo input:focus { border: 4px solid var(--rojo-700); box-shadow: 0 0 0 4px rgba(249, 153, 172, .45); }
+.campo.completado input { background: var(--rojo-300); border: 2px solid var(--rojo-700); }
+
+/* resumen */
+.resumen-pedido { background: var(--verde-500); border: 2px solid var(--verde-800); }
+.titulo-resumen { font-weight: 700; color: var(--rojo-900); }
+.detalle-resumen { font-weight: 600; color: var(--rojo-700); }
+
+.paso-enviado .bajada { color: var(--rojo-700); text-align: center; }
+.ilustracion-hada { object-fit: cover; }
+
+/* ---------- Formulario · escritorio (1582 × 930) ---------- */
+.formulario-esc {
+  width: 1582px; height: 930px;
+  border: 1px solid var(--rojo-200);
+  box-shadow: 0 4px 42px var(--verde-800);
+}
+.formulario-esc .paso { position: absolute; inset: -1px; }
+.formulario-esc .paso > * { position: absolute; }
+.formulario-esc .barra-progreso { left: 119px; top: 22px; width: 1354px; height: 119px; }
+.formulario-esc .riel { left: 0; top: 25px; width: 1354px; height: 69px; border-radius: 15px; }
+.formulario-esc .avance { left: 8px; top: 32px; height: 54px; border-radius: 15px; }
+.formulario-esc .indicador { top: 0; width: 119px; height: 119px; }
+.formulario-esc .paso-1 .avance { width: 446px; }  .formulario-esc .paso-1 .indicador { left: 394px; }
+.formulario-esc .paso-2 .avance { width: 892px; }  .formulario-esc .paso-2 .indicador { left: 840px; }
+.formulario-esc .paso-3 .avance { width: 1338px; } .formulario-esc .paso-3 .indicador { left: 1243px; }
+.formulario-esc .titulo { left: 0; top: 160px; width: 1582px; height: 87px; font-size: 64px; line-height: 87px; }
+.formulario-esc .etiqueta-grupo { font-size: 36px; line-height: 49px; height: 49px; }
+.formulario-esc .e-tamano { left: 101px; top: 262px; }
+.formulario-esc .e-sabor { left: 112px; top: 676px; }
+.formulario-esc .e-relleno { left: 101px; top: 262px; }
+.formulario-esc .e-decoracion { left: 101px; top: 400px; }
+.formulario-esc .e-mensaje { left: 101px; top: 538px; }
+.formulario-esc .opciones-tamano { left: 101px; top: 322px; width: 1355px; height: 320px; display: flex; gap: 145px; }
+.formulario-esc .tarjeta-tamano {
+  width: 355px; height: 320px; border-width: 4px; border-radius: 25px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+}
+.formulario-esc .tarjeta-tamano:hover, .formulario-esc .tarjeta-tamano.seleccionado { border-width: 4px; }
+.formulario-esc .tarjeta-tamano .icono { width: 141px; height: 100px; }
+.formulario-esc .tarjeta-tamano .textos { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.formulario-esc .tarjeta-tamano .nombre { font-size: 36px; line-height: 49px; }
+.formulario-esc .tarjeta-tamano .porciones { font-size: 22px; line-height: 30px; }
+.formulario-esc .tarjeta-tamano .etiqueta-elegido { height: 46px; padding: 7px 28px; font-size: 22px; line-height: 30px; margin-top: 12px; }
+.formulario-esc .opciones-chips { display: flex; gap: 11px; height: 51px; }
+.formulario-esc .o-sabor { left: 107px; top: 740px; }
+.formulario-esc .o-relleno { left: 101px; top: 322px; }
+.formulario-esc .o-decoracion { left: 101px; top: 460px; }
+.formulario-esc .chip { height: 51px; padding: 0 24px; border-radius: 25px; font-size: 22px; line-height: 30px; }
+.formulario-esc .campo { gap: 12px; }
+.formulario-esc .campo .etiqueta { font-size: 22px; line-height: 30px; }
+.formulario-esc .campo input { height: 67px; padding: 0 28px; border-radius: 25px; font-size: 22px; }
+.formulario-esc .campo input:focus { padding: 0 26px; }
+.formulario-esc .c-mensaje { left: 101px; top: 598px; width: 900px; }
+.formulario-esc .c-nombre { left: 101px; top: 262px; width: 619px; }
+.formulario-esc .c-telefono { left: 780px; top: 262px; width: 619px; }
+.formulario-esc .c-fecha { left: 101px; top: 390px; width: 619px; }
+.formulario-esc .c-direccion { left: 780px; top: 390px; width: 619px; }
+.formulario-esc .c-notas { left: 101px; top: 518px; width: 1298px; }
+.formulario-esc .resumen-pedido {
+  left: 101px; top: 660px; min-width: 671px; height: 112px;
+  border-radius: 25px; padding: 20px 32px; display: flex; flex-direction: column; gap: 8px;
+}
+.formulario-esc .titulo-resumen, .formulario-esc .detalle-resumen { font-size: 22px; line-height: 30px; white-space: nowrap; }
+.formulario-esc .botones { position: static; }
+.formulario-esc .boton-paso { position: absolute; top: 823px; height: 67px; font-size: 36px; line-height: 49px; }
+.formulario-esc .b-paso1 .siguiente { left: 458px; width: 619px; }
+.formulario-esc .atras { left: 101px; width: 420px; }
+.formulario-esc .b-paso2 .siguiente, .formulario-esc .enviar { left: 553px; width: 420px; }
+.formulario-esc .paso-enviado {
+  position: absolute; inset: -1px;
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+.formulario-esc[data-paso="enviado"] .paso-enviado { display: flex; }
+.formulario-esc .paso-enviado > * { position: static; }
+.formulario-esc .ilustracion-hada { width: 456px; height: 380px; }
+.formulario-esc .paso-enviado .titulo { width: auto; height: 87px; }
+.formulario-esc .paso-enviado .bajada { width: 1000px; font-size: 36px; line-height: 49px; }
+.formulario-esc .otro-pedido { position: static; width: 619px; height: 67px; font-size: 36px; }
+
+/* ---------- Pie de página · escritorio ---------- */
+.pie-esc {
+  left: 0; top: 9171px; width: 1920px; height: 634px;
+  background: var(--rojo-300); overflow: hidden;
+}
+.pie-de-pagina > * { position: absolute; }
+.pie-esc .onda-superior { left: -101px; top: -130px; width: 2050px; height: 243px; }
+.pie-esc .contenido { left: 200px; top: 150px; width: 1520px; height: 306px; }
+.pie-de-pagina .contenido > * { position: absolute; display: flex; flex-direction: column; }
+.pie-de-pagina .nombre { font-family: var(--fuente-titulo); color: var(--rojo-900); white-space: nowrap; }
+.pie-de-pagina .lema, .pie-de-pagina .contacto p, .pie-de-pagina .derechos { color: var(--rojo-700); font-weight: 400; white-space: nowrap; }
+.pie-de-pagina h4 { font-weight: 700; color: var(--rojo-900); }
+.enlace-pie { display: flex; align-items: center; color: var(--rojo-700); font-weight: 600; white-space: nowrap; transition: color .2s; }
+.enlace-pie::before { content: ""; flex: none; border-radius: 50%; background: var(--rojo-500); transition: background .2s; }
+.enlace-pie:hover { color: var(--rojo-900); font-weight: 700; }
+.enlace-pie:hover::before { background: var(--esmeralda-600); }
+.red-social {
+  display: inline-flex; align-items: center; background: var(--rojo-200);
+  border: 2px solid var(--rojo-700); border-radius: 25px;
+  color: var(--rojo-700); font-weight: 600; white-space: nowrap;
+}
+.pie-de-pagina .linea { background: var(--rojo-500); }
+
+.pie-esc .marca { left: 0; top: 0; width: 427px; gap: 10px; }
+.pie-esc .marca .logo { width: 110px; height: 116px; }
+.pie-esc .nombre { font-size: 84px; line-height: 143px; height: 143px; }
+.pie-esc .lema { font-size: 20px; line-height: 27px; }
+.pie-esc .navegacion { left: 547px; top: 0; width: 247px; gap: 14px; }
+.pie-esc h4 { font-size: 28px; line-height: 38px; }
+.pie-esc .enlace-pie { gap: 8px; padding: 2px 0; font-size: 22px; line-height: 30px; }
+.pie-esc .enlace-pie::before { width: 8px; height: 8px; }
+.pie-esc .contacto { left: 914px; top: 0; width: 346px; gap: 12px; }
+.pie-esc .contacto p { font-size: 20px; line-height: 27px; }
+.pie-esc .redes { left: 1380px; top: 0; width: 140px; gap: 16px; }
+.pie-esc .redes-sociales { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.pie-esc .red-social { padding: 8px 22px; font-size: 20px; line-height: 27px; }
+.pie-esc .linea { left: 160px; top: 512px; width: 1600px; height: 1px; }
+.pie-esc .derechos { left: 765px; top: 569px; font-size: 18px; line-height: 25px; }
+
+/* =========================================================
+   MÓVIL · 430 px
+   ========================================================= */
+.movil { width: 430px; position: relative; overflow: hidden; }
+.movil main { display: block; }
+.movil section, .movil footer { position: relative; overflow: hidden; }
+.movil section > *, .movil footer > * { position: absolute; }
+
+/* ---------- Header móvil fijo ---------- */
+.header-movil { position: fixed; top: 0; left: 0; width: 430px; height: 80px; overflow: hidden; z-index: 50; }
+.header-movil > * { position: absolute; }
+.header-movil .onda { left: -508px; top: -89px; width: 1398px; height: 166px; pointer-events: none; }
+.header-movil .circulo-logo { left: 140px; top: -77px; width: 150px; height: 143px; border-radius: 50%; background: var(--rojo-300); }
+.header-movil .logo { left: 189px; top: 5px; width: 52px; height: 55px; }
+.header-movil .logo img { width: 100%; height: 100%; }
+.header-movil .pestana {
+  top: 0; width: 76px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rojo-300); border-radius: 0 0 6.7px 6.7px;
+  font-weight: 600; font-size: 14px; line-height: 19px; color: var(--rojo-900);
+  transition: color .2s;
+}
+.header-movil .pestana:hover { color: var(--rojo-500); }
+.header-movil .p-inicio { left: 4px; }
+.header-movil .p-pasteles { left: 84px; }
+.header-movil .p-pedido { left: 270px; }
+.header-movil .p-ocasion { left: 350px; }
+
+/* ---------- Inicio móvil ---------- */
+.m-inicio { height: 760px; background: var(--rojo-400); }
+.m-inicio .trazo { left: 0; top: 330px; width: 430px; height: 294px; overflow: visible; }
+.m-inicio > .titulo {
+  left: 0; top: 104px; width: 430px; height: 96px; text-align: center;
+  font-family: var(--fuente-titulo); font-weight: 400; font-size: 84px; line-height: 96px;
+}
+.m-inicio .bajada {
+  left: 45px; top: 206px; width: 340px; height: 80px; text-align: center;
+  font-weight: 600; font-size: 18px; line-height: 40px;
+}
+.m-inicio .boton-principal {
+  left: 74px; top: 306px; width: 281px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rojo-300); border-radius: 9.3px;
+  font-weight: 600; font-size: 12.4px; line-height: 13px;
+}
+.m-inicio .pastel { left: 49px; top: 378px; width: 333px; height: 360px; }
+
+/* ---------- Pasteles de temporada móvil ---------- */
+.m-temporada { height: 660px; background: var(--verde-600); }
+.m-temporada .onda-superior { left: 0; top: 0; width: 430px; height: 57px; }
+.m-temporada .limones { top: -10px; transform: translateX(-80px); }
+.m-temporada .limones-arte { zoom: .56; }
+.m-temporada .titulo {
+  left: 0; top: 100px; width: 430px; height: 41px; text-align: center;
+  font-weight: 700; font-size: 30px; line-height: 41px; color: var(--verde-900);
+}
+.m-temporada .ventana { left: 67px; top: 170px; width: 296px; height: 364px; overflow: hidden; }
+.m-temporada .pista { position: absolute; left: 0; top: 0; display: flex; gap: 24px; transition: transform .6s ease-in-out; }
+.m-temporada .tarjeta-temporada { width: 296px; gap: 10.96px; }
+.m-temporada .imagen-tarjeta { zoom: .81994; }
+.m-temporada .tarjeta-temporada .contenedor { height: 70.5px; padding: 10.96px; border-radius: 13.7px; }
+.m-temporada .tarjeta-temporada p { line-height: 21.9px; }
+.m-temporada .tarjeta-temporada strong { font-weight: 600; font-size: 20.1px; line-height: 26.5px; }
+.m-temporada .tarjeta-temporada span { font-weight: 400; font-size: 14.6px; line-height: 21.9px; }
+.m-temporada .flecha { top: 329px; width: 53px; height: 47px; }
+.m-temporada .flecha img { width: 53px; height: 46.5px; }
+.m-temporada .flecha-derecha { left: 371px; }
+.m-temporada .flecha-izquierda { left: 6px; }
+
+/* ---------- Ocasión especial móvil ---------- */
+.m-ocasion {
+  background-color: var(--rojo-300);
+  padding: 150px 0 80px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.m-ocasion::before { /* patrón de fondo en mosaico, opacidad 30 % */
+  content: ""; position: absolute; inset: 0;
+  background: url(img/patron.png) repeat left top / 425.5px auto;
+  opacity: var(--opacidad-patron, .3);
+}
+.movil .m-ocasion > * { position: relative; }
+.movil .m-ocasion .chorreado { position: absolute; left: -20px; top: -10px; width: 470px; height: 129.7px; }
+.m-ocasion > .titulo { font-weight: 700; font-size: 34px; line-height: 46px; height: 46px; }
+.tarjeta-ocasion-m {
+  width: 366px; overflow: hidden;
+  background: rgba(255, 249, 249, .82);
+  border: 3px solid rgba(255, 255, 255, .9); border-radius: 32px;
+  box-shadow: 0 18px 48px rgba(136, 1, 1, .1);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.tarjeta-ocasion-m img { width: 366px; max-width: none; height: 334px; object-fit: cover; }
+.tarjeta-ocasion-m .contenido { width: 360px; padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
+.tarjeta-ocasion-m h3 { font-family: var(--fuente-titulo); font-weight: 400; font-size: 38px; line-height: 82.1px; height: 83px; white-space: nowrap; }
+.tarjeta-ocasion-m p { font-weight: 600; font-size: 16px; line-height: 34.4px; }
+
+/* ---------- Pide tu pastel móvil ---------- */
+.m-pide {
+  background: var(--verde-500);
+  padding: 90px 0 47px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.movil .m-pide > * { position: relative; }
+.movil .m-pide .trazo { position: absolute; left: 0; top: 60px; width: 430px; height: 823px; overflow: visible; }
+.m-pide > .titulo { font-weight: 700; font-size: 40px; line-height: 55px; height: 55px; }
+
+/* ---------- Formulario · móvil (398 de ancho) ---------- */
+.formulario-mov { width: 398px; padding: 24px 16px 28px; }
+.formulario-mov .paso { flex-direction: column; gap: 18px; }
+.formulario-mov[data-paso="1"] .paso-1,
+.formulario-mov[data-paso="2"] .paso-2,
+.formulario-mov[data-paso="3"] .paso-3,
+.formulario-mov[data-paso="enviado"] .paso-enviado { display: flex; }
+.formulario-mov .paso-enviado { align-items: center; padding: 8px 0 8px; }
+.formulario-mov .barra-progreso { width: 366px; height: 48px; flex: none; }
+.formulario-mov .riel { left: 0; top: 10px; width: 366px; height: 28px; border-radius: 10px; }
+.formulario-mov .avance { left: 4px; top: 14px; height: 20px; border-radius: 10px; }
+.formulario-mov .indicador { top: 0; width: 48px; height: 48px; }
+.formulario-mov .paso-1 .avance { width: 119px; } .formulario-mov .paso-1 .indicador { left: 99px; }
+.formulario-mov .paso-2 .avance { width: 239px; } .formulario-mov .paso-2 .indicador { left: 219px; }
+.formulario-mov .paso-3 .avance { width: 358px; } .formulario-mov .paso-3 .indicador { left: 318px; }
+.formulario-mov .titulo { width: 366px; font-size: 30px; line-height: 41px; }
+.formulario-mov .etiqueta-grupo { font-size: 20px; line-height: 27px; }
+.formulario-mov .opciones-tamano { display: flex; flex-direction: column; gap: 10px; }
+.formulario-mov .tarjeta-tamano {
+  width: 366px; height: 80px; border-width: 3px; border-radius: 20px;
+  display: flex; align-items: center; gap: 14px; padding: 0 16px; text-align: left;
+}
+.formulario-mov .tarjeta-tamano .icono { width: 63px; height: 44.7px; }
+.formulario-mov .tarjeta-tamano .textos { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.formulario-mov .tarjeta-tamano .nombre { font-size: 20px; line-height: 27px; }
+.formulario-mov .tarjeta-tamano .porciones { font-size: 14px; line-height: 19px; }
+.formulario-mov .tarjeta-tamano .etiqueta-elegido { height: 32px; padding: 4px 14px; font-size: 14px; line-height: 19px; }
+.formulario-mov .opciones-chips { display: flex; flex-wrap: wrap; gap: 8px; width: 366px; }
+.formulario-mov .chip { height: 38px; padding: 0 16px; border-radius: 19px; font-size: 16px; line-height: 22px; }
+.formulario-mov .campo { gap: 8px; width: 366px; }
+.formulario-mov .campo .etiqueta { font-size: 16px; line-height: 22px; }
+.formulario-mov .campo input { height: 48px; padding: 0 16px; border-radius: 18px; font-size: 16px; }
+.formulario-mov .campo input:focus { padding: 0 14px; }
+.formulario-mov .resumen-pedido { width: 366px; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px; }
+.formulario-mov .titulo-resumen { font-size: 16px; line-height: 22px; }
+.formulario-mov .detalle-resumen { font-size: 14px; line-height: 19px; }
+.formulario-mov .botones { display: flex; gap: 10px; margin-top: 4px; width: 366px; }
+.formulario-mov .b-paso2, .formulario-mov .b-paso3 { margin-top: 4px; }
+.formulario-mov .b-paso1 { margin-top: 4px; }
+.formulario-mov .boton-paso { flex: 1; height: 52px; border-radius: 20px; font-size: 20px; line-height: 27px; }
+.formulario-mov .otro-pedido { flex: none; width: 366px; }
+.formulario-mov .ilustracion-hada { width: 300px; height: 250px; }
+.formulario-mov .paso-enviado .titulo { font-size: 28px; line-height: 38px; }
+.formulario-mov .paso-enviado .bajada { width: 366px; font-size: 16px; line-height: 22px; }
+
+/* ---------- Pie de página móvil ---------- */
+.pie-mov { height: 865px; background: var(--rojo-300); }
+.pie-mov .onda-superior { left: -508px; top: -88px; width: 1398px; height: 166px; }
+.pie-mov .contenido { left: 55px; top: 90px; width: 321px; height: 664px; }
+.pie-mov .contenido > * { align-items: center; text-align: center; }
+.pie-mov .marca { left: 0; top: 0; width: 321px; gap: 6px; }
+.pie-mov .marca .logo { width: 70px; height: 74px; }
+.pie-mov .nombre { font-size: 56px; line-height: 95px; height: 95px; }
+.pie-mov .lema { font-size: 15px; line-height: 20px; }
+.pie-mov .navegacion { left: 70px; top: 233px; width: 182px; gap: 8px; }
+.pie-mov h4 { font-size: 20px; line-height: 27px; }
+.pie-mov .enlace-pie { gap: 8px; padding: 2px 0; font-size: 16px; line-height: 22px; }
+.pie-mov .enlace-pie::before { width: 6px; height: 6px; }
+.pie-mov .contacto { left: 31px; top: 428px; width: 259px; gap: 6px; }
+.pie-mov .contacto p { font-size: 15px; line-height: 20px; }
+.pie-mov .redes { left: 7px; top: 591px; width: 308px; gap: 10px; }
+.pie-mov .redes-sociales { display: flex; gap: 10px; }
+.pie-mov .red-social { padding: 6px 16px; font-size: 15px; line-height: 20px; }
+.pie-mov .linea { left: 32px; top: 786px; width: 366px; height: 1px; }
+.pie-mov .derechos { left: 74px; top: 819px; font-size: 13px; line-height: 18px; }
